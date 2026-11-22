@@ -7,6 +7,7 @@ import { getProductById } from '../services/productService';
 import { toCartItem } from '../lib/normalize';
 import { isSafeUrl } from '../lib/security';
 import { ErrorState, LoadingState } from '../components/common/AsyncState';
+import SEO from '../components/SEO';
 import { shippingService } from '../services/shippingService';
 import type { Product } from '../types';
 
@@ -159,9 +160,17 @@ export const ProductDetailPage: React.FC = () => {
   /* States                                                                  */
   /* ---------------------------------------------------------------------- */
 
+  const productCanonicalPath = id ? `/products/${id}` : product?.slug ? `/products/${product.slug}` : '/products';
+
   if (loading) {
     return (
       <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen px-4">
+        <SEO
+          title="Guitar Pedal"
+          description="Listen to studio audio demos, inspect specs, and order handcrafted analog guitar pedals direct from IDIOT Pedals India."
+          canonicalPath={productCanonicalPath}
+          ogType="product"
+        />
         <div className="max-w-3xl mx-auto">
           <LoadingState message="Loading pedal details…" />
         </div>
@@ -172,6 +181,12 @@ export const ProductDetailPage: React.FC = () => {
   if (error || !product) {
     return (
       <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen px-4">
+        <SEO
+          title="Pedal Not Found"
+          description="This guitar pedal could not be found in the IDIOT Pedals catalogue."
+          canonicalPath={productCanonicalPath}
+          noindex
+        />
         <div className="max-w-3xl mx-auto space-y-4">
           <ErrorState
             error={error}
@@ -193,9 +208,20 @@ export const ProductDetailPage: React.FC = () => {
   }
 
   const specEntries = Object.entries(product.specifications ?? {});
+  const productDescription =
+    product.description?.trim()
+      ? product.description.replace(/\s+/g, ' ').trim().slice(0, 155)
+      : 'Listen to studio audio demos, inspect in 3D, and order direct from IDIOT Pedals India.';
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
+      <SEO
+        title={`${product.name} — Boutique Guitar Pedal`}
+        description={productDescription}
+        canonicalPath={productCanonicalPath}
+        ogImage={images[0]}
+        ogType="product"
+      />
       {/* Background ambient lighting */}
       <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-[#FF5E1E]/10 blur-[170px] pointer-events-none rounded-full" />
 

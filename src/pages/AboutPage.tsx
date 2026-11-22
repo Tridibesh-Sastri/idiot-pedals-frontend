@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wrench, Shield, Zap, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export const AboutPage: React.FC = () => {
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
+      <SEO
+        title="About Our Burdwan Workbench"
+        description="Discover how IDIOT Pedals hand-wires road-worthy analog guitar effects pedals in Burdwan, India — delivering authentic vintage tone without boutique hype pricing."
+        canonicalPath="/about"
+      />
       {/* Background glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[#FF5E1E]/10 blur-[170px] pointer-events-none rounded-full" />
 

@@ -8,6 +8,7 @@ import {
   verifyCopyFor,
   resendCountdownLabel,
 } from '../lib/verifyHelpers';
+import SEO from '../components/SEO';
 
 export type { ViewState };
 export { verifyCopyFor, resendCountdownLabel };
@@ -167,6 +168,12 @@ export const VerifyEmailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] flex flex-col justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <SEO
+        title="Verify Email"
+        description="Confirm your email address to activate your IDIOT Pedals workbench account."
+        canonicalPath="/verify-email"
+        noindex
+      />
       {/* Background glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

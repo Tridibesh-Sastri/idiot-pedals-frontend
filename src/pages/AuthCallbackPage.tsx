@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext';
 import { LoadingState } from '../components/common/AsyncState';
+import SEO from '../components/SEO';
 
 /** Shown to the user when the session could not be established. */
 const FAILURE_ERROR_CODE = 'google_failed';
@@ -91,10 +92,20 @@ export const AuthCallbackPage: React.FC = () => {
     return () => controller.abort();
   }, [navigate, refreshUser]);
 
+  const callbackSeo = (
+    <SEO
+      title="Signing In"
+      description="Completing sign-in for your IDIOT Pedals workbench account."
+      canonicalPath="/auth/callback"
+      noindex
+    />
+  );
+
   // Keep showing the spinner only until the effect settles (success navigates away).
   if (!settled) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 px-4 flex items-center justify-center">
+        {callbackSeo}
         <div className="max-w-md w-full">
           <LoadingState message="Completing sign-in and loading your workbench account…" />
         </div>
@@ -104,6 +115,7 @@ export const AuthCallbackPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 px-4 flex items-center justify-center">
+      {callbackSeo}
       <div className="max-w-lg w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-xl backdrop-blur-xl">
         <h1 className="text-2xl font-editorial font-bold text-[#2A1A12]">Sign-in could not be completed</h1>
         <p className="text-xs sm:text-sm text-[#8A6A54] font-mono-tech leading-relaxed">

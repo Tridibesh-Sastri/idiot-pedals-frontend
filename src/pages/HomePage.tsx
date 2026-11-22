@@ -11,6 +11,7 @@ import { Specifications } from "../components/pedal/Specifications";
 import { ExplodedView as _ExplodedView } from "../components/ExplodedView";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 // Keep hidden-section references so imports stay in code without rendering
 void _SoundDemoSection;
@@ -29,6 +30,11 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12]">
+      <SEO
+        title="Boutique Guitar Effects Pedals Made in India"
+        description="Handcrafted boutique guitar effects pedals engineered in India. Explore interactive 3D models, studio clean & fuzz audio demos, and pan-India shipping."
+        canonicalPath="/"
+      />
       {/* ================= STATIC HERO ================= */}
       <HeroFullscreenScrub />
 

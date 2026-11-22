@@ -7,6 +7,7 @@ import { LoadingState } from '../components/common/AsyncState';
 import { userService } from '../services/userService';
 import { describeApiError } from '../lib/api';
 import { isValidPhone, validateContactFields, PROFILE_CONTACT_CAPS } from '../lib/validation';
+import SEO from '../components/SEO';
 import type { UserAddress } from '../types';
 
 /** Mirrors the server-side rules for PATCH /api/users/me. */
@@ -221,9 +222,19 @@ export const AccountPage: React.FC = () => {
     showToast('Signed out of workbench profile.');
   };
 
+  const accountSeo = (
+    <SEO
+      title="Player Account"
+      description="Manage your IDIOT Pedals profile, saved shipping addresses, and order history."
+      canonicalPath="/account"
+      noindex
+    />
+  );
+
   if (initializing) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 px-4">
+        {accountSeo}
         <div className="max-w-md mx-auto">
           <LoadingState message="Restoring your session…" />
         </div>
@@ -234,6 +245,7 @@ export const AccountPage: React.FC = () => {
   if (!user || !isAuthenticated) {
     return (
       <div className="min-h-[80vh] bg-[#FFF8F1] text-[#2A1A12] flex flex-col items-center justify-center px-4 pt-28">
+        {accountSeo}
         <div className="max-w-md w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 text-center space-y-4 shadow-2xl backdrop-blur-xl">
           <h2 className="text-2xl font-editorial font-bold text-[#2A1A12]">
             Player Account Sign In
@@ -261,6 +273,7 @@ export const AccountPage: React.FC = () => {
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen relative overflow-hidden">
+      {accountSeo}
       {/* Glow */}
       <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

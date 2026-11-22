@@ -14,6 +14,7 @@ import { ShippingAddress, User, UserAddress } from '../types';
 import { userService } from '../services/userService';
 import { IdiotPedalsLogo } from '../components/common/IdiotPedalsLogo';
 import { LoadingState } from '../components/common/AsyncState';
+import SEO from '../components/SEO';
 
 /**
  * Picks the checkout contact from a profile. Pure and null-safe: the User
@@ -429,9 +430,19 @@ export const CheckoutPage: React.FC = () => {
   /* Guards                                                                   */
   /* ---------------------------------------------------------------------- */
 
+  const checkoutSeo = (
+    <SEO
+      title="Checkout"
+      description="Complete your IDIOT Pedals order with secure Razorpay checkout and free pan-India shipping."
+      canonicalPath="/checkout"
+      noindex
+    />
+  );
+
   if (initializing) {
     return (
       <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen px-4">
+        {checkoutSeo}
         <div className="max-w-3xl mx-auto">
           <LoadingState message="Preparing checkout…" />
         </div>
@@ -442,6 +453,7 @@ export const CheckoutPage: React.FC = () => {
   if (!isAuthenticated) {
     return (
       <div className="min-h-[80vh] bg-[#FFF8F1] text-[#2A1A12] flex flex-col items-center justify-center px-4 pt-28">
+        {checkoutSeo}
         <div className="max-w-md w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 text-center space-y-4 shadow-2xl backdrop-blur-xl">
           <IdiotPedalsLogo variant="light" size="sm" />
           <h2 className="text-2xl font-editorial font-bold text-[#2A1A12]">Sign In To Checkout</h2>
@@ -463,6 +475,7 @@ export const CheckoutPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-[80vh] bg-[#FFF8F1] text-[#2A1A12] flex flex-col items-center justify-center px-4 pt-28">
+        {checkoutSeo}
         <div className="max-w-md w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 text-center space-y-4 shadow-2xl backdrop-blur-xl">
           <IdiotPedalsLogo variant="light" size="sm" />
           <h2 className="text-2xl font-editorial font-bold text-[#2A1A12]">No Items in Checkout</h2>
@@ -490,6 +503,7 @@ export const CheckoutPage: React.FC = () => {
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
+      {checkoutSeo}
       {/* Glow */}
       <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

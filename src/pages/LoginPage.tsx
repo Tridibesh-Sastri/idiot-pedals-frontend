@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { isSafeRedirectPath } from '../lib/security';
 import { describeApiError } from '../lib/api';
+import SEO from '../components/SEO';
 
 export const LoginPage: React.FC = () => {
   const { login, redirectToGoogle, isAuthenticated, loading, clearError } = useAuth();
@@ -79,6 +80,12 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] flex flex-col justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <SEO
+        title="Player Login"
+        description="Sign in to your IDIOT Pedals workbench account to track orders and manage your profile."
+        canonicalPath="/login"
+        noindex
+      />
       {/* Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

@@ -12,6 +12,7 @@ import { orderService } from "../services/orderService";
 import { useAuth } from "../context/AuthContext";
 import { Order } from "../types";
 import { ErrorState, LoadingState } from "../components/common/AsyncState";
+import SEO from "../components/SEO";
 
 const STATUS_HEADLINE: Record<Order["status"], string> = {
   pending: "Order Placed — Awaiting Confirmation",
@@ -73,9 +74,19 @@ export const OrderDetailPage: React.FC = () => {
   /* Guards                                                                  */
   /* ---------------------------------------------------------------------- */
 
+  const orderSeo = (
+    <SEO
+      title={order ? `Order ${order.orderNumber}` : "Order Details"}
+      description="View shipment tracking, payment details, and receipt for your IDIOT Pedals order."
+      canonicalPath={id ? `/orders/${id}` : "/orders"}
+      noindex
+    />
+  );
+
   if (initializing || loading) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 px-4">
+        {orderSeo}
         <div className="max-w-3xl mx-auto">
           <LoadingState message="Fetching shipment tracking data…" />
         </div>
@@ -86,6 +97,7 @@ export const OrderDetailPage: React.FC = () => {
   if (!isAuthenticated) {
     return (
       <div className="min-h-[80vh] bg-[#FFF8F1] text-[#2A1A12] flex flex-col items-center justify-center px-4 pt-28">
+        {orderSeo}
         <div className="max-w-md w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 text-center space-y-4 shadow-2xl backdrop-blur-xl">
           <Package size={32} className="text-[#FF5E1E] mx-auto" />
           <h2 className="text-2xl font-editorial font-bold text-[#2A1A12]">
@@ -110,6 +122,7 @@ export const OrderDetailPage: React.FC = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 px-4">
+        {orderSeo}
         <div className="max-w-3xl mx-auto space-y-4">
           <ErrorState
             error={error}
@@ -133,6 +146,7 @@ export const OrderDetailPage: React.FC = () => {
   if (!order) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] flex flex-col items-center justify-center px-4 pt-20">
+        {orderSeo}
         <div className="max-w-md w-full bg-white border border-[#F0D3B8] rounded-3xl p-8 text-center space-y-4 backdrop-blur-xl">
           <h2 className="text-2xl font-editorial font-bold text-[#2A1A12]">
             Order Not Found
@@ -183,6 +197,7 @@ export const OrderDetailPage: React.FC = () => {
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen relative overflow-hidden">
+      {orderSeo}
       {/* Glow */}
       <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

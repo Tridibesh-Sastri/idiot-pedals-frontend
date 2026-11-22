@@ -9,6 +9,7 @@ import { describeApiError } from '../lib/api';
 import { sanitizeString } from '../lib/security';
 import { validateContactFields, PROFILE_CONTACT_CAPS } from '../lib/validation';
 import { useResendCountdown } from '../lib/useResendCountdown';
+import SEO from '../components/SEO';
 import type { UserAddress } from '../types';
 
 const NAME_RE = /^[\p{L}\p{M}][\p{L}\p{M} .'-]*$/u;
@@ -167,9 +168,19 @@ export const RegisterPage: React.FC = () => {
   /* Success state: account is created only after email verification         */
   /* ---------------------------------------------------------------------- */
 
+  const registerSeo = (
+    <SEO
+      title="Create Account"
+      description="Create an IDIOT Pedals workbench account to track shipments and receive small-batch notices."
+      canonicalPath="/register"
+      noindex
+    />
+  );
+
   if (submittedEmail) {
     return (
       <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] flex flex-col justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {registerSeo}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 
         <div className="max-w-md w-full mx-auto bg-white border border-[#F0D3B8] rounded-3xl p-8 sm:p-10 space-y-6 shadow-2xl text-center backdrop-blur-xl relative z-10">
@@ -249,6 +260,7 @@ export const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF8F1] text-[#2A1A12] flex flex-col justify-center py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {registerSeo}
       {/* Background glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 

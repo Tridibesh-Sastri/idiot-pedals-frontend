@@ -7,6 +7,7 @@ import { getActiveProducts } from '../services/productService';
 import { toCartItem } from '../lib/normalize';
 import { isSafeUrl } from '../lib/security';
 import { EmptyState, ErrorState, LoadingState } from '../components/common/AsyncState';
+import SEO from '../components/SEO';
 import type { Product } from '../types';
 
 /**
@@ -172,6 +173,11 @@ export const ProductsPage: React.FC = () => {
 
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen relative overflow-hidden">
+      <SEO
+        title="Shop Boutique Guitar Pedals"
+        description="Browse handcrafted analog guitar effects pedals built in small batches at our Burdwan workbench with free insured pan-India shipping."
+        canonicalPath="/products"
+      />
       {/* Glow */}
       <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-[#FF5E1E]/10 blur-[170px] pointer-events-none rounded-full" />
 
