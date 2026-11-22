@@ -9,12 +9,12 @@ const readEnv = (key: string): string | undefined => {
 
 /**
  * Default social sharing card image.
- * Set `VITE_DEFAULT_OG_IMAGE` to your ImageKit hero URL
- * (e.g. `https://ik.imagekit.io/<YOUR_IMAGEKIT_ID>/products/neon-fuzz/images/neon-fuzz-front.webp`)
- * and social card dimensions (`?tr=w-1200,h-630,c-at_max`) are appended automatically.
+ * Can be overridden at build time via `VITE_DEFAULT_OG_IMAGE`.
+ * ImageKit URLs automatically receive `?tr=w-1200,h-630,c-at_max`.
  */
 export const DEFAULT_OG_IMAGE =
-  readEnv('VITE_DEFAULT_OG_IMAGE') ?? `${SITE_URL}/frames/web/frame_0001.webp`;
+  readEnv('VITE_DEFAULT_OG_IMAGE') ??
+  'https://ik.imagekit.io/vwtc5dlzf/Idiot_pedals_media/Bold%20Idiot%20Pedals%20Logo.png';
 
 export interface SEOProps {
   title?: string;
@@ -82,6 +82,7 @@ export default function SEO({
       <meta property="og:description" content={cleanDescription} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={socialImage} />
+      <meta property="og:image:secure_url" content={socialImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 

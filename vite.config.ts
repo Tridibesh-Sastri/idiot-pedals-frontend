@@ -20,8 +20,26 @@ export default defineConfig(({ mode }) => {
    */
   const proxyTarget = (process.env.VITE_API_PROXY_TARGET ?? env.VITE_API_PROXY_TARGET)?.trim();
 
+  const rawDefaultOgImage =
+    (process.env.VITE_DEFAULT_OG_IMAGE ?? env.VITE_DEFAULT_OG_IMAGE)?.trim() ||
+    'https://ik.imagekit.io/vwtc5dlzf/Idiot_pedals_media/Bold%20Idiot%20Pedals%20Logo.png';
+
+  const defaultOgImage =
+    rawDefaultOgImage.includes('ik.imagekit.io') && !/[?&]tr=/.test(rawDefaultOgImage)
+      ? `${rawDefaultOgImage}${rawDefaultOgImage.includes('?') ? '&' : '?'}tr=w-1200,h-630,c-at_max`
+      : rawDefaultOgImage;
+
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'inject-default-og-image',
+        transformIndexHtml(html) {
+          return html.replaceAll('__DEFAULT_OG_IMAGE__', defaultOgImage);
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

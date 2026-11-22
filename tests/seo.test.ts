@@ -35,8 +35,14 @@ test('buildCanonicalUrl normalizes slashes and strips query/hash tracking params
 });
 
 test('formatSocialImage adds ImageKit social card transform when missing', () => {
-  assert.equal(formatSocialImage(undefined), DEFAULT_OG_IMAGE);
-  assert.equal(formatSocialImage('   '), DEFAULT_OG_IMAGE);
+  assert.equal(
+    formatSocialImage(undefined),
+    `${DEFAULT_OG_IMAGE}?tr=w-1200,h-630,c-at_max`
+  );
+  assert.equal(
+    formatSocialImage('   '),
+    `${DEFAULT_OG_IMAGE}?tr=w-1200,h-630,c-at_max`
+  );
 
   assert.equal(
     formatSocialImage('https://ik.imagekit.io/demo/products/neon-fuzz.webp'),
