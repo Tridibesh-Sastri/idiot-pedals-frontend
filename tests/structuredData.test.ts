@@ -39,6 +39,12 @@ test('ORGANIZATION_SCHEMA declares IDIOT Pedals with valid URL, logo, and Instag
   assert.equal(ORGANIZATION_SCHEMA['@type'], 'Organization');
   assert.equal(ORGANIZATION_SCHEMA.name, 'IDIOT Pedals');
   assert.equal(ORGANIZATION_SCHEMA.url, 'https://idiotpedals.shop');
+  assert.deepEqual(ORGANIZATION_SCHEMA.logo, {
+    '@type': 'ImageObject',
+    url: 'https://idiotpedals.shop/icon-512.png',
+    width: 512,
+    height: 512,
+  });
   assert.deepEqual(ORGANIZATION_SCHEMA.sameAs, ['https://www.instagram.com/idiot.pedals/']);
 });
 

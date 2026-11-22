@@ -2,8 +2,12 @@ import type { Product } from '../types';
 
 const SITE_URL = 'https://idiotpedals.shop';
 const BRAND_NAME = 'IDIOT Pedals';
-const BRAND_LOGO =
-  'https://ik.imagekit.io/vwtc5dlzf/Idiot_pedals_media/Bold%20Idiot%20Pedals%20Logo.png';
+const BRAND_LOGO = {
+  '@type': 'ImageObject',
+  url: `${SITE_URL}/icon-512.png`,
+  width: 512,
+  height: 512,
+};
 const FALLBACK_PRODUCT_IMAGE =
   'https://ik.imagekit.io/vwtc5dlzf/Idiot_pedals_media/IDIOT%20Pedals%20Studio%20Close-Up.png';
 
