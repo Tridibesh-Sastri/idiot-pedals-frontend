@@ -20,7 +20,7 @@ export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
   logo: BRAND_LOGO,
   description:
     'Handcrafted boutique guitar effects pedals engineered and built in Burdwan, West Bengal, India.',
-  email: 'workbench@idiotpedals.com',
+  email: 'idiotpedals@gmail.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Bardhaman',
@@ -31,7 +31,8 @@ export const ORGANIZATION_SCHEMA: Record<string, unknown> = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'workbench@idiotpedals.com',
+    telephone: '+91-79085-85003',
+    email: 'idiotpedals@gmail.com',
     url: `${SITE_URL}/contact`,
     availableLanguage: ['English', 'Hindi', 'Bengali'],
   },

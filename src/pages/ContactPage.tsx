@@ -76,7 +76,7 @@ export const ContactPage: React.FC = () => {
     },
     {
       q: 'How long does shipping take?',
-      a: 'All orders placed before 2 PM IST are dispatched same day or next morning via Shiprocket courier partners. Typical transit time is 2-4 business days.',
+      a: 'Every pedal is bench-tested and dispatched within 1–3 business days from Bardhaman (Burdwan), West Bengal. Free insured doorstep delivery across India typically takes 3–7 business days after dispatch.',
     },
   ];
 
@@ -138,7 +138,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-bold text-[#2A1A12]">Email Dispatch</div>
-                    <div className="text-[#8A6A54] text-xs pt-0.5">workbench@idiotpedals.com</div>
+                    <div className="text-[#8A6A54] text-xs pt-0.5">idiotpedals@gmail.com</div>
                     <div className="text-[11px] text-[#FF5E1E]/80 pt-0.5">Typical response within 2 hours</div>
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-bold text-[#2A1A12]">Phone & WhatsApp</div>
-                    <div className="text-[#8A6A54] text-xs pt-0.5">+91 98301 23456</div>
+                    <div className="text-[#8A6A54] text-xs pt-0.5">+91 79085 85003</div>
                     <div className="text-[11px] text-[#8A6A54]/70 pt-0.5">Mon – Sat, 10:00 AM to 7:00 PM IST</div>
                   </div>
                 </div>

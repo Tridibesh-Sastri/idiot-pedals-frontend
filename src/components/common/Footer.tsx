@@ -57,9 +57,8 @@ export const Footer: React.FC = () => {
         {/* Main Footer Links */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-4">
           
-          {/* Brand Info — spans 9 now that the Gear/Workshop columns are gone,
-              so brand + Customer Care still fill all 12 grid columns. */}
-          <div className="md:col-span-9 space-y-4">
+          {/* Brand Info */}
+          <div className="md:col-span-6 space-y-4">
             <IdiotPedalsLogo variant="light" size="md" />
             <div className="text-xs font-mono-tech tracking-[0.25em] text-[#FF5E1E] font-bold uppercase">
               CHEAPER. CLASSIC SOUND.
@@ -70,20 +69,51 @@ export const Footer: React.FC = () => {
             <div className="text-xs font-mono-tech text-[#8A6A54] space-y-2 pt-2">
               <div className="flex items-center gap-2.5">
                 <MapPin size={15} className="text-[#FF5E1E] shrink-0" />
-                <span>Burdwan Workshop, West Bengal, India</span>
+                <span>Bardhaman (Burdwan), West Bengal, 713101, India</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={15} className="text-[#FF5E1E] shrink-0" />
-                <span>workbench@idiotpedals.com</span>
+                <a href="mailto:idiotpedals@gmail.com" className="hover:text-[#FF5E1E] transition-colors">
+                  idiotpedals@gmail.com
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={15} className="text-[#FF5E1E] shrink-0" />
-                <span>+91 98301 23456 (Mon - Sat, 10 AM - 7 PM IST)</span>
+                <a href="tel:+917908585003" className="hover:text-[#FF5E1E] transition-colors">
+                  +91 79085 85003 (Mon – Sat, 10 AM – 7 PM IST)
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Gear and Workshop link columns removed. */}
+          {/* Legal & Policies */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="text-xs font-mono-tech font-bold uppercase tracking-[0.2em] text-[#2A1A12]">
+              Legal &amp; Policies
+            </h4>
+            <ul className="space-y-2.5 text-xs font-mono-tech">
+              <li>
+                <Link to="/shipping" className="hover:text-[#FF5E1E] transition-colors">
+                  Shipping Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/refund" className="hover:text-[#FF5E1E] transition-colors">
+                  Return &amp; Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="hover:text-[#FF5E1E] transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-[#FF5E1E] transition-colors">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
 
           {/* Orders & Account */}
           <div className="md:col-span-3 space-y-4">
@@ -91,6 +121,11 @@ export const Footer: React.FC = () => {
               Customer Care
             </h4>
             <ul className="space-y-2.5 text-xs font-mono-tech">
+              <li>
+                <Link to="/contact" className="hover:text-[#FF5E1E] transition-colors">
+                  Contact &amp; Support
+                </Link>
+              </li>
               <li>
                 <Link to="/orders" className="hover:text-[#FF5E1E] transition-colors">
                   Track Existing Order
@@ -107,7 +142,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li className="pt-2 text-[11px] text-[#8A6A54]/80 leading-normal">
-                Ships nationwide via Shiprocket. Tracking details are shared once your order ships.
+                Free insured doorstep delivery across India. Tracking details are shared once your order ships.
               </li>
             </ul>
           </div>
