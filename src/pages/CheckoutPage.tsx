@@ -9,6 +9,7 @@ import { paymentService } from '../services/paymentService';
 import { getActiveProducts } from '../services/productService';
 import { ApiError, describeApiError } from '../lib/api';
 import { sanitizeString } from '../lib/security';
+import { optimizeImageKitUrl } from '../lib/media';
 import { isValidPhone, isValidPinCode, normalizePhoneDigits, normalizePinCode, validateContactFields } from '../lib/validation';
 import { ShippingAddress, User, UserAddress } from '../types';
 import { userService } from '../services/userService';
@@ -847,7 +848,15 @@ export const CheckoutPage: React.FC = () => {
                     <div key={item.id} className="flex gap-3.5 items-center">
                       <div className="w-12 h-14 bg-[#FFF1E6] rounded-xl p-1.5 flex flex-col items-center justify-between text-[#2A1A12] shrink-0 border border-[#F0D3B8] shadow-inner overflow-hidden">
                         {item.image ? (
-                          <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg" />
+                          <img
+                            src={optimizeImageKitUrl(item.image, { width: 160, quality: 80 })}
+                            alt={item.name}
+                            width={48}
+                            height={56}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
                         ) : (
                           <>
                             <div className="w-full flex justify-around">

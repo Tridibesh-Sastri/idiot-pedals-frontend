@@ -1,24 +1,18 @@
 import React from "react";
 import { HeroFullscreenScrub } from "../components/HeroFullscreenScrub";
-// NOTE (hidden 2026-09-25): Product + Tone Demo sections kept in code but hidden from website.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SoundDemoSection as _SoundDemoSection } from "../components/pedal/SoundDemoSection";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { PedalPhotoGallery as _PedalPhotoGallery } from "../components/pedal/PedalPhotoGallery";
+// NOTE (hidden 2026-09-25): Product + Tone Demo + ExplodedView components remain in
+// src/components/ and are kept commented out here so unused animation dependencies
+// (motion/react) are tree-shaken out of the production bundle for faster mobile LCP/INP.
+// import { SoundDemoSection } from "../components/pedal/SoundDemoSection";
+// import { PedalPhotoGallery } from "../components/pedal/PedalPhotoGallery";
+// import { ExplodedView } from "../components/ExplodedView";
 import { ControlsOverview } from "../components/pedal/ControlsOverview";
 import { Specifications } from "../components/pedal/Specifications";
-// Keep ExplodedView in the code as requested
-import { ExplodedView as _ExplodedView } from "../components/ExplodedView";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import JsonLd from "../components/JsonLd";
 import { ORGANIZATION_SCHEMA } from "../lib/structuredData";
-
-// Keep hidden-section references so imports stay in code without rendering
-void _SoundDemoSection;
-void _PedalPhotoGallery;
-void _ExplodedView;
 
 // Change this to the real account — the Workbench CTA links straight to it.
 const INSTAGRAM_URL = "https://www.instagram.com/idiot.pedals/";

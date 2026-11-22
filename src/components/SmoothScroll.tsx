@@ -1,46 +1,44 @@
 import React, { useEffect } from 'react';
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    // On mobile/touch devices, native scroll is already perfectly smooth.
-    // Lenis on touch actually fights the browser's momentum — pure lag.
+    // Respect reduced-motion preferences and skip smooth-scroll libraries on mobile/touch
+    // devices (native momentum scrolling is faster and avoids main-thread INP overhead).
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouchDevice) {
-      // Just keep ScrollTrigger synced to native scroll — zero overhead.
-      const onScroll = () => ScrollTrigger.update();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      return () => {
-        window.removeEventListener('scroll', onScroll);
-      };
-    }
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouchDevice || prefersReducedMotion) return;
 
-    // Desktop: Lenis with tighter duration so it feels snappy, not sluggish
-    const lenis = new Lenis({
-      duration: 0.85,
-      easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out — natural deceleration
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
+    let cancelled = false;
+    let rafId = 0;
+    let destroyLenis: (() => void) | undefined;
+
+    // Dynamically import Lenis off the critical bundle on desktop only.
+    void import('lenis').then(({ default: Lenis }) => {
+      if (cancelled) return;
+
+      const lenis = new Lenis({
+        duration: 0.85,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+      });
+
+      const raf = (time: number) => {
+        if (cancelled) return;
+        lenis.raf(time);
+        rafId = window.requestAnimationFrame(raf);
+      };
+
+      rafId = window.requestAnimationFrame(raf);
+      destroyLenis = () => lenis.destroy();
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
-
-    const update = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
-
     return () => {
-      gsap.ticker.remove(update);
-      lenis.destroy();
+      cancelled = true;
+      if (rafId) window.cancelAnimationFrame(rafId);
+      destroyLenis?.();
     };
   }, []);
 

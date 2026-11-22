@@ -6,7 +6,10 @@ import { useToast } from '../context/ToastContext';
 import { getProductById } from '../services/productService';
 import { toCartItem } from '../lib/normalize';
 import { isSafeUrl } from '../lib/security';
+import { optimizeImageKitUrl } from '../lib/media';
 import { ErrorState, LoadingState } from '../components/common/AsyncState';
+import { ProductMediaStage } from '../components/pedal/ProductMediaStage';
+import { ProductAudioDemos } from '../components/pedal/ProductAudioDemos';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import {
@@ -130,6 +133,16 @@ export const ProductDetailPage: React.FC = () => {
     [product]
   );
 
+  const safeGlbUrl = useMemo(
+    () => (product?.model3D?.url && isSafeUrl(product.model3D.url) ? product.model3D.url : undefined),
+    [product]
+  );
+
+  const safeAudioTracks = useMemo(
+    () => (product?.audio ?? []).filter((track) => isSafeUrl(track.url)),
+    [product]
+  );
+
   const outOfStock = !product || product.status !== 'active' || product.availableStock <= 0;
   const maxQuantity = product ? Math.max(1, Math.min(MAX_QUANTITY, product.availableStock || 0)) : 1;
 
@@ -248,22 +261,23 @@ export const ProductDetailPage: React.FC = () => {
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pb-8">
-          {/* Left: gallery / decorative pedal */}
+          {/* Left: gallery / deferred 3D stage */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="bg-white border border-[#F0D3B8] rounded-2xl sm:rounded-3xl p-4 sm:p-10 flex flex-col items-center justify-center relative shadow-xl sm:shadow-2xl min-h-[260px] sm:min-h-[500px] backdrop-blur-xl">
-              {images.length > 0 ? (
-                <img
-                  src={images[Math.min(activeImage, images.length - 1)]}
-                  alt={product.name}
-                  className="max-h-[240px] sm:max-h-[420px] w-auto max-w-full object-contain rounded-xl sm:rounded-2xl"
-                />
-              ) : (
-                <div className="relative my-2 sm:my-4">
-                  <PedalPlaceholder />
-                </div>
-              )}
+            <div className="bg-white border border-[#F0D3B8] rounded-2xl sm:rounded-3xl p-4 sm:p-8 flex flex-col items-center justify-center relative shadow-xl sm:shadow-2xl backdrop-blur-xl">
+              <ProductMediaStage
+                posterUrl={
+                  images.length > 0
+                    ? images[Math.min(activeImage, images.length - 1)]
+                    : product.model3D?.poster && isSafeUrl(product.model3D.poster)
+                      ? product.model3D.poster
+                      : undefined
+                }
+                glbUrl={safeGlbUrl}
+                alt={product.name}
+                fallback={<PedalPlaceholder />}
+              />
 
-              <div className="text-center text-xs text-[#8A6A54] font-mono-tech uppercase tracking-widest mt-2 sm:mt-4">
+              <div className="text-center text-xs text-[#8A6A54] font-mono-tech uppercase tracking-widest mt-3 sm:mt-4">
                 {[product.sku, product.currency].filter(Boolean).join(' • ')}
               </div>
             </div>
@@ -279,7 +293,15 @@ export const ProductDetailPage: React.FC = () => {
                       index === activeImage ? 'border-[#FF5E1E]' : 'border-[#F0D3B8] hover:border-[#FF5E1E]/50'
                     }`}
                   >
-                    <img src={image} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover" />
+                    <img
+                      src={optimizeImageKitUrl(image, { width: 200, quality: 80 })}
+                      alt={`${product.name} view ${index + 1}`}
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -437,6 +459,9 @@ export const ProductDetailPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Studio Audio Demos (preload="none" for zero initial bandwidth cost) */}
+        <ProductAudioDemos tracks={safeAudioTracks} productName={product.name} />
 
         {/* Specifications */}
         <section className="mt-8 bg-white border border-[#F0D3B8] rounded-3xl p-6 sm:p-10 shadow-xl backdrop-blur-xl">

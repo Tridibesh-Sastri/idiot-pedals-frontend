@@ -32,9 +32,12 @@ export function HeroFullscreenScrub({ onTransitionStateChange: _ }: HeroFullscre
         <img
           src="/frames/web/frame_0001.webp"
           alt="Idiot Pedals Neon Fuzz Box"
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover object-center select-none pointer-events-none"
           draggable={false}
           fetchPriority="high"
+          decoding="async"
         />
       </picture>
 

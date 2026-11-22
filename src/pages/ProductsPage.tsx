@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext';
 import { getActiveProducts } from '../services/productService';
 import { toCartItem } from '../lib/normalize';
 import { isSafeUrl } from '../lib/security';
+import { buildImageKitSrcSet, optimizeImageKitUrl } from '../lib/media';
 import { EmptyState, ErrorState, LoadingState } from '../components/common/AsyncState';
 import SEO from '../components/SEO';
 import type { Product } from '../types';
@@ -38,13 +39,15 @@ const StockBadge: React.FC<{ product: Product }> = ({ product }) => {
   );
 };
 
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: Product; priority?: boolean }> = ({ product, priority = false }) => {
   const { addItem } = useCart();
   const { showToast } = useToast();
   const navigate = useNavigate();
 
   const outOfStock = product.status !== 'active' || product.availableStock <= 0;
-  const image = product.images.find((entry) => isSafeUrl(entry));
+  const rawImage = product.images.find((entry) => isSafeUrl(entry));
+  const image = rawImage ? optimizeImageKitUrl(rawImage, { width: 480, quality: 80 }) : undefined;
+  const imageSrcSet = rawImage ? buildImageKitSrcSet(rawImage, [320, 480, 720], 80) : undefined;
 
   const handleAdd = () => {
     if (outOfStock) return;
@@ -66,8 +69,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {image ? (
             <img
               src={image}
+              srcSet={imageSrcSet}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               alt={product.name}
-              loading="lazy"
+              width={480}
+              height={360}
+              loading={priority ? 'eager' : 'lazy'}
+              fetchPriority={priority ? 'high' : undefined}
+              decoding="async"
               className="w-full h-full object-cover"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = 'none';
@@ -242,8 +251,8 @@ export const ProductsPage: React.FC = () => {
           />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {filtered.map((product, index) => (
+              <ProductCard key={product.id} product={product} priority={index === 0} />
             ))}
           </div>
         )}

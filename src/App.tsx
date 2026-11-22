@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Context Providers: Provide application-wide state for Authentication, Cart, and Notifications
@@ -6,7 +6,7 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
 
-// Lenis + GSAP ScrollTrigger Synchronizer
+// Lenis Smooth Scroll Synchronizer (desktop-only, lazily loaded)
 import { SmoothScroll } from './components/SmoothScroll';
 
 // Common Global Layout Components
@@ -15,29 +15,36 @@ import { Footer } from './components/common/Footer';
 import { CartDrawer } from './components/common/CartDrawer';
 import { ToastContainer } from './components/common/ToastContainer';
 import { ScrollToTop } from './components/common/ScrollToTop';
+import { LoadingState } from './components/common/AsyncState';
 
-// Page Views: Public marketing, product catalogue, and support
+// Primary public landing & catalog views stay eagerly loaded for immediate first paint
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailPage } from './pages/ProductPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
 
-// Page Views: User authentication and two-step verification
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { VerifyEmailPage } from './pages/VerifyEmailPage';
-import { VerifyPhonePage } from './pages/VerifyPhonePage';
-import { AuthCallbackPage } from './pages/AuthCallbackPage';
+// Secondary & private routes are code-split so initial JS stays lean for mobile LCP/INP
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const LoginPage = lazy(() => import('./pages/LoginPage').then((m) => ({ default: m.LoginPage })));
+const RegisterPage = lazy(() => import('./pages/RegisterPage').then((m) => ({ default: m.RegisterPage })));
+const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage').then((m) => ({ default: m.VerifyEmailPage })));
+const VerifyPhonePage = lazy(() => import('./pages/VerifyPhonePage').then((m) => ({ default: m.VerifyPhonePage })));
+const AuthCallbackPage = lazy(() => import('./pages/AuthCallbackPage').then((m) => ({ default: m.AuthCallbackPage })));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage').then((m) => ({ default: m.CheckoutPage })));
+const OrdersPage = lazy(() => import('./pages/OrdersPage').then((m) => ({ default: m.OrdersPage })));
+const OrderDetailPage = lazy(() => import('./pages/OrderDetailPage').then((m) => ({ default: m.OrderDetailPage })));
+const AccountPage = lazy(() => import('./pages/AccountPage').then((m) => ({ default: m.AccountPage })));
 
-// Page Views: E-commerce checkout, order history, and account profile
-import { CheckoutPage } from './pages/CheckoutPage';
-import { OrdersPage } from './pages/OrdersPage';
-import { OrderDetailPage } from './pages/OrderDetailPage';
-import { AccountPage } from './pages/AccountPage';
+const RouteFallback: React.FC = () => (
+  <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 min-h-screen px-4">
+    <div className="max-w-3xl mx-auto">
+      <LoadingState message="Loading…" />
+    </div>
+  </div>
+);
 
 /**
- * Root Application Component with Lenis Smooth Scrolling and Light Editorial UI
+ * Root Application Component with Light Editorial UI
  * (white / warm paper + neon orange — absorbed from the landing hero)
  */
 export default function App() {
@@ -58,33 +65,35 @@ export default function App() {
 
                 {/* Main Routing Viewport */}
                 <main className="flex-grow">
-                  <Routes>
-                    {/* Public marketing and catalog routes */}
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/products" element={<ProductsPage />} />
-                    <Route path="/products/:id" element={<ProductDetailPage />} />
-                    {/* Legacy single-product route kept working */}
-                    <Route path="/product" element={<Navigate to="/products" replace />} />
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
+                  <Suspense fallback={<RouteFallback />}>
+                    <Routes>
+                      {/* Public marketing and catalog routes */}
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/products" element={<ProductsPage />} />
+                      <Route path="/products/:id" element={<ProductDetailPage />} />
+                      {/* Legacy single-product route kept working */}
+                      <Route path="/product" element={<Navigate to="/products" replace />} />
+                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/contact" element={<ContactPage />} />
 
-                    {/* Authentication & Verification routes */}
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/verify-email" element={<VerifyEmailPage />} />
-                    <Route path="/verify-phone" element={<VerifyPhonePage />} />
-                    {/* Google OAuth lands here once the backend has set the session cookie. */}
-                    <Route path="/auth/callback" element={<AuthCallbackPage />} />
+                      {/* Authentication & Verification routes */}
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route path="/register" element={<RegisterPage />} />
+                      <Route path="/verify-email" element={<VerifyEmailPage />} />
+                      <Route path="/verify-phone" element={<VerifyPhonePage />} />
+                      {/* Google OAuth lands here once the backend has set the session cookie. */}
+                      <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
-                    {/* Customer Orders & Checkout routes */}
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/orders" element={<OrdersPage />} />
-                    <Route path="/orders/:id" element={<OrderDetailPage />} />
-                    <Route path="/account" element={<AccountPage />} />
+                      {/* Customer Orders & Checkout routes */}
+                      <Route path="/checkout" element={<CheckoutPage />} />
+                      <Route path="/orders" element={<OrdersPage />} />
+                      <Route path="/orders/:id" element={<OrderDetailPage />} />
+                      <Route path="/account" element={<AccountPage />} />
 
-                    {/* Catch-all fallback: redirect any unknown URL to HomePage */}
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Routes>
+                      {/* Catch-all fallback: redirect any unknown URL to HomePage */}
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                  </Suspense>
                 </main>
 
                 {/* Global Overlays: Floating Toast Notifications */}
