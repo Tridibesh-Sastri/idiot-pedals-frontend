@@ -1,0 +1,32 @@
+# IDIOT Pedals
+
+> Handcrafted boutique guitar effects pedals engineered and built in Burdwan, West Bengal, India.
+
+## Storefront & Navigation
+- [Homepage](https://idiotpedals.shop/): Brand overview, flagship Distortion ONE showcase, controls, and hardware specifications.
+- [All Pedals](https://idiotpedals.shop/products): The Workbench Collection catalog with live INR pricing and availability.
+- [Distortion ONE](https://idiotpedals.shop/products/6b01fb7a1b894093dece8351): Flagship boutique high-gain analog distortion guitar pedal.
+- [About Our Workbench](https://idiotpedals.shop/about): Engineering philosophy and small-batch manufacturing in Burdwan, India.
+- [Contact & Builder Support](https://idiotpedals.shop/contact): Direct builder inquiries, rig troubleshooting, warranty claims, and order assistance.
+
+## Flagship Product: Distortion ONE
+- **Brand:** IDIOT Pedals
+- **Category:** Boutique Guitar Effects Pedal (Analog High-Gain Distortion / Fuzz)
+- **Origin:** Hand-wired and bench-tested in Burdwan (Bardhaman), West Bengal, India
+- **Currency & Availability:** Priced in Indian Rupees (INR), inclusive of all taxes; live stock and pricing available at https://idiotpedals.shop/products/6b01fb7a1b894093dece8351
+- **Bypass Switching:** Mechanical 3PDT true-bypass
+- **Power Standard:** Standard 9V DC center-negative (2.1mm barrel) pedalboard power supply
+- **Impedance:** 500k Ohm input / 10k Ohm output
+- **Shipping:** Free insured doorstep delivery across India
+- **Warranty:** 365-day (1-year) bench warranty against component defects
+
+## Support & Social
+- **Email:** workbench@idiotpedals.com
+- **Instagram:** https://www.instagram.com/idiot.pedals/
+
+## Policies
+- [Warranty & FAQ](https://idiotpedals.shop/contact#warranty)
+- [Shipping Policy](https://idiotpedals.shop/shipping)
+- [Refund & Return Policy](https://idiotpedals.shop/refund)
+- [Terms & Conditions](https://idiotpedals.shop/terms)
+- [Privacy Policy](https://idiotpedals.shop/privacy)

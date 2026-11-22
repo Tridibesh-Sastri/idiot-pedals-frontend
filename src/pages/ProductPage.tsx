@@ -8,6 +8,12 @@ import { toCartItem } from '../lib/normalize';
 import { isSafeUrl } from '../lib/security';
 import { ErrorState, LoadingState } from '../components/common/AsyncState';
 import SEO from '../components/SEO';
+import JsonLd from '../components/JsonLd';
+import {
+  buildProductBreadcrumbSchema,
+  buildProductFaqSchema,
+  buildProductSchema,
+} from '../lib/structuredData';
 import { shippingService } from '../services/shippingService';
 import type { Product } from '../types';
 
@@ -213,6 +219,10 @@ export const ProductDetailPage: React.FC = () => {
       ? product.description.replace(/\s+/g, ' ').trim().slice(0, 155)
       : 'Listen to studio audio demos, inspect in 3D, and order direct from IDIOT Pedals India.';
 
+  const productSchema = buildProductSchema(product, { routeId: id, safeImages: images });
+  const breadcrumbSchema = buildProductBreadcrumbSchema(product, id);
+  const faqSchema = buildProductFaqSchema(product.name);
+
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
       <SEO
@@ -222,6 +232,9 @@ export const ProductDetailPage: React.FC = () => {
         ogImage={images[0]}
         ogType="product"
       />
+      <JsonLd data={productSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
       {/* Background ambient lighting */}
       <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-[#FF5E1E]/10 blur-[170px] pointer-events-none rounded-full" />
 

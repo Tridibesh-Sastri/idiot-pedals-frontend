@@ -12,7 +12,7 @@ initRuntimeSecurity();
 if (document.documentElement.dataset.prerendered === 'true') {
   document
     .querySelectorAll(
-      'head title, head meta[name="description"], head meta[name="robots"], head link[rel="canonical"], head meta[property^="og:"], head meta[name^="twitter:"]'
+      'head title, head meta[name="description"], head meta[name="robots"], head link[rel="canonical"], head meta[property^="og:"], head meta[name^="twitter:"], script[type="application/ld+json"]'
     )
     .forEach((el) => el.remove());
 } else {

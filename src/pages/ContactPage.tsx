@@ -4,6 +4,8 @@ import { useToast } from '../context/ToastContext';
 import { sanitizeString } from '../lib/security';
 import { ApiError, api, describeApiError } from '../lib/api';
 import SEO from '../components/SEO';
+import JsonLd from '../components/JsonLd';
+import { buildFaqSchema } from '../lib/structuredData';
 
 /**
  * User-facing copy for a failed contact submission, by status.
@@ -78,6 +80,10 @@ export const ContactPage: React.FC = () => {
     },
   ];
 
+  const contactFaqSchema = buildFaqSchema(
+    faqs.map((faq) => ({ question: faq.q, answer: faq.a }))
+  );
+
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
       <SEO
@@ -85,6 +91,7 @@ export const ContactPage: React.FC = () => {
         description="Get direct support from the IDIOT Pedals Burdwan workbench for rig compatibility, order tracking, bulk studio inquiries, and 1-year bench warranty claims."
         canonicalPath="/contact"
       />
+      <JsonLd data={contactFaqSchema} />
       {/* Background glow */}
       <div className="absolute top-20 right-1/4 w-[600px] h-[400px] bg-[#FF5E1E]/10 blur-[160px] pointer-events-none rounded-full" />
 
