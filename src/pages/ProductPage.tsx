@@ -402,7 +402,7 @@ export const ProductDetailPage: React.FC = () => {
               )}
             </div>
 
-            {/* Pincode estimator */}
+            {/* Pincode estimator (temporarily hidden until delivery estimator is ready)
             <div className="p-5 bg-white border border-[#F0D3B8] rounded-2xl space-y-3 backdrop-blur-xl">
               <div className="flex items-center gap-2 text-xs font-mono-tech text-[#2A1A12] uppercase font-bold tracking-wider">
                 <MapPin size={14} className="text-[#FF5E1E]" />
@@ -445,6 +445,7 @@ export const ProductDetailPage: React.FC = () => {
                 </div>
               )}
             </div>
+            */}
 
             {/* Assurance */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] font-mono-tech">
@@ -460,8 +461,9 @@ export const ProductDetailPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Studio Audio Demos (preload="none" for zero initial bandwidth cost) */}
+        {/* Studio Audio Demos (temporarily hidden until audio samples are ready)
         <ProductAudioDemos tracks={safeAudioTracks} productName={product.name} />
+        */}
 
         {/* Specifications */}
         <section className="mt-8 bg-white border border-[#F0D3B8] rounded-3xl p-6 sm:p-10 shadow-xl backdrop-blur-xl">
