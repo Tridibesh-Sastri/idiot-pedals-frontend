@@ -45,24 +45,12 @@ const SECTIONS: PolicySection[] = [
     ),
   },
   {
-    title: '365-Day Bench Warranty',
+    title: '6-Month Bench Warranty',
     body: (
       <p>
         Every IDIOT Pedals unit is backed by a{' '}
-        <strong className="text-[#2A1A12]">1-year (365-day) bench warranty</strong> against
+        <strong className="text-[#2A1A12]">6-month bench warranty</strong> against
         component or workmanship defects, serviced directly by our builders in Bardhaman.
-      </p>
-    ),
-  },
-  {
-    title: 'Refund Processing Timeline',
-    body: (
-      <p>
-        For approved pre-dispatch cancellations or verified defective units where a replacement is
-        unavailable, refunds are initiated within{' '}
-        <strong className="text-[#2A1A12]">2 business days</strong> of verification and credited to
-        your original Razorpay payment method within{' '}
-        <strong className="text-[#2A1A12]">5–7 business days</strong>.
       </p>
     ),
   },
@@ -71,11 +59,11 @@ const SECTIONS: PolicySection[] = [
 export const RefundPolicyPage: React.FC = () => (
   <PolicyLayout
     seoTitle="Return, Refund & Cancellation Policy"
-    seoDescription="Read the IDIOT Pedals policy for 24-hour pre-dispatch cancellations, 7-day free replacements for damaged or defective pedals, 365-day bench warranty, and Razorpay refund timelines."
+    seoDescription="Read the IDIOT Pedals policy for 24-hour pre-dispatch cancellations, 7-day free replacements for damaged or defective pedals, and 6-month bench warranty."
     canonicalPath="/refund"
     badge="Returns, Refunds & Warranty"
     heading="Return, Refund & Cancellation Policy"
-    intro="Straightforward cancellation windows, 7-day transit-damage replacements, 365-day bench warranty coverage, and transparent Razorpay refund timelines."
+    intro="Straightforward cancellation windows, 7-day transit-damage replacements, and 6-month bench warranty coverage."
     sections={SECTIONS}
   />
 );

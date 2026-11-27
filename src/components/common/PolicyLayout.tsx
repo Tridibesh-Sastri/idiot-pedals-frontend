@@ -22,8 +22,6 @@ interface PolicyLayoutProps {
 const POLICY_NAV: { label: string; to: '/shipping' | '/refund' | '/privacy' | '/terms' }[] = [
   { label: 'Shipping Policy', to: '/shipping' },
   { label: 'Return & Refund Policy', to: '/refund' },
-  { label: 'Privacy Policy', to: '/privacy' },
-  { label: 'Terms & Conditions', to: '/terms' },
 ];
 
 export const PolicyLayout: React.FC<PolicyLayoutProps> = ({
@@ -34,7 +32,7 @@ export const PolicyLayout: React.FC<PolicyLayoutProps> = ({
   heading,
   intro,
   sections,
-  locationText = 'Bardhaman (Burdwan), West Bengal, 713101, India',
+  locationText = 'Bardhaman (Burdwan), West Bengal, 713104, India',
 }) => {
   return (
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative min-h-screen">

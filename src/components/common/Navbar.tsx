@@ -89,15 +89,15 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
             <IdiotPedalsLogo variant="dark" size="sm" />
           </Link>
 
-          {/* Desktop Nav Links — balanced 5-link editorial row with active orange pill */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 text-xs font-mono-tech tracking-[0.18em] uppercase">
+          {/* Desktop Nav Links — balanced editorial row with active orange pill */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-mono-tech tracking-[0.18em] uppercase">
             {navLinks.map((link) => {
               const isActive = isLinkActive(link.path);
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-2.5 lg:px-4 py-2 rounded-full transition-all duration-200 ${
+                  className={`px-2.5 xl:px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
                     isActive
                       ? 'bg-[#FF5E1E]/15 text-[#FF5E1E] font-bold ring-1 ring-[#FF5E1E]/40'
                       : 'text-[#F6F4EE]/80 hover:text-[#FF5E1E] hover:bg-white/5'
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-[#F6F4EE] hover:text-[#FF5E1E] transition-colors"
+              className="lg:hidden p-2 text-[#F6F4EE] hover:text-[#FF5E1E] transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -173,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
       {/* Mobile Drawer Navigation Menu */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-[#0B0E14] md:hidden h-[100dvh] overflow-y-auto overscroll-contain flex flex-col justify-between"
+          className="fixed inset-0 z-40 bg-[#0B0E14] lg:hidden h-[100dvh] overflow-y-auto overscroll-contain flex flex-col justify-between"
           style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
         >
           <div className="min-h-full flex flex-col justify-between pt-28 px-8 pb-10 w-full relative z-10">

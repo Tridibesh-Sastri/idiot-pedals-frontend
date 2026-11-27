@@ -97,9 +97,6 @@ export const LoginPage: React.FC = () => {
           <h2 className="text-3xl font-editorial font-normal uppercase tracking-tight text-[#2A1A12]">
             Player Login
           </h2>
-          <p className="text-xs text-[#8A6A54] font-mono-tech">
-            Access your order tracking, bench warranty, and workbench receipts.
-          </p>
         </div>
 
         <div className="bg-white border border-[#F0D3B8] rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 backdrop-blur-xl">
@@ -193,9 +190,9 @@ export const LoginPage: React.FC = () => {
             <span>Continue with Google</span>
           </button>
 
-          <div className="text-center pt-2 text-xs font-mono-tech text-[#8A6A54]">
-            Don't have a workbench account yet?{' '}
-            <Link to="/register" className="text-[#FF5E1E] font-bold hover:underline">
+          <div className="text-center pt-4 border-t border-[#F0D3B8]/60 text-sm font-mono-tech text-[#5A4234] leading-relaxed">
+            <span>Don&apos;t have a workbench account yet? </span>
+            <Link to="/register" className="text-[#FF5E1E] font-bold hover:underline inline-block">
               Create an Account
             </Link>
           </div>

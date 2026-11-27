@@ -3,9 +3,9 @@ import { Cpu, ShieldCheck, Power, Volume2, Box } from 'lucide-react';
 
 export const Specifications: React.FC = () => {
   const specs = [
-    { label: 'Circuit Topology', value: '100% Pure Analog High-Gain Distortion / Fuzz', icon: Cpu },
+    { label: 'Circuit Topology', value: '100% Pure Analog High-Gain Distortion', icon: Cpu },
     { label: 'Bypass Switching', value: 'Mechanical 3PDT True-Bypass (Zero tone loss when disengaged)', icon: ShieldCheck },
-    { label: 'Power Requirements', value: '9V DC Center-Negative (Standard pedal power supply, 2.1mm)', icon: Power },
+    { label: 'Power Requirements', value: 'Standard 12V Power Supply (Provided in the box)', icon: Power },
     { label: 'Input Impedance', value: '500k Ohm (Guitar pickup friendly)', icon: Volume2 },
     { label: 'Output Impedance', value: '10k Ohm (Drives long pedal chains cleanly)', icon: Volume2 },
     { label: 'Enclosure Material', value: 'Solid 3D Printed Enclosure', icon: Box },

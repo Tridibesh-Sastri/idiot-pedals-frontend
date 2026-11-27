@@ -64,19 +64,15 @@ export const ContactPage: React.FC = () => {
   const faqs = [
     {
       q: 'What kind of power supply should I use?',
-      a: 'The Neon Fuzz Box runs on standard 9V DC center-negative power (2.1mm barrel, Boss-standard). It also takes an internal 9V alkaline battery. Never feed it more than 9.6V.',
+      a: 'The pedal comes with a 12V power supply in the box.',
     },
     {
       q: 'Where in my pedalboard signal chain should I place it?',
       a: 'Like classic vintage fuzzes, it loves being FIRST in your signal chain right after your guitar pickups before any buffered pedals or tuners. It also sounds monster pushing an overdrive.',
     },
     {
-      q: 'How does the 1-Year Bench Warranty work?',
-      a: 'If any potentiometer, footswitch, jack, or internal solder trace fails during normal use within 12 months, we fix or replace it free. You simply ship it to our Burdwan workshop.',
-    },
-    {
       q: 'How long does shipping take?',
-      a: 'Every pedal is bench-tested and dispatched within 1–3 business days from Bardhaman (Burdwan), West Bengal. Free insured doorstep delivery across India typically takes 3–7 business days after dispatch.',
+      a: 'Shipping time is calculated at checkout and the tracking link is sent over WhatsApp and Gmail.',
     },
   ];
 
@@ -88,7 +84,7 @@ export const ContactPage: React.FC = () => {
     <div className="bg-[#FFF8F1] text-[#2A1A12] pt-28 pb-20 overflow-hidden relative">
       <SEO
         title="Contact & Builder Support"
-        description="Get direct support from the IDIOT Pedals Burdwan workbench for rig compatibility, order tracking, bulk studio inquiries, and 1-year bench warranty claims."
+        description="Get direct support from the IDIOT Pedals workbench for rig compatibility, order tracking, bulk studio inquiries, and 6-month bench warranty claims."
         canonicalPath="/contact"
       />
       <JsonLd data={contactFaqSchema} />
@@ -106,7 +102,7 @@ export const ContactPage: React.FC = () => {
             Talk To The Builders
           </h1>
           <p className="text-xs sm:text-base text-[#8A6A54] font-light max-w-xl mx-auto leading-relaxed">
-            Got a question about rig compatibility, custom orders, or your shipment? We answer every message directly from our Burdwan workbench.
+            Got a question about rig compatibility, custom orders, or your shipment? We answer every message directly from our workbench.
           </p>
         </div>
 
@@ -127,7 +123,7 @@ export const ContactPage: React.FC = () => {
                   <div>
                     <div className="font-bold text-[#2A1A12]">Burdwan Workshop</div>
                     <div className="text-[#8A6A54] text-xs pt-0.5">
-                      IDIOT Pedals Audio Labs, Grand Trunk Road Sector, Burdwan, West Bengal 713101, India
+                      IDIOT Pedals Audio Labs, Grand Trunk Road Sector, Burdwan, West Bengal 713104, India
                     </div>
                   </div>
                 </div>
@@ -157,7 +153,7 @@ export const ContactPage: React.FC = () => {
 
               <div className="p-4 bg-[#FFF1E6] border border-[#F0D3B8] rounded-2xl flex items-center gap-3 text-xs font-mono-tech text-[#8A6A54]">
                 <ShieldCheck size={18} className="text-[#FF5E1E] shrink-0" />
-                <span>All pedals covered by 1-Year Comprehensive Bench Warranty.</span>
+                <span>All pedals covered by 6-Month Comprehensive Bench Warranty.</span>
               </div>
             </div>
           </div>
@@ -247,7 +243,7 @@ export const ContactPage: React.FC = () => {
                     required
                     rows={4}
                     maxLength={2000}
-                    placeholder="Tell us what guitar/amp you play, or any questions about the Neon Fuzz Box..."
+                    placeholder="Tell us what guitar/amp you play, or any questions about the Distortion ONE..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full bg-[#FFF1E6] border border-[#F0D3B8] rounded-2xl p-4 text-xs text-[#2A1A12] font-mono-tech focus:outline-none focus:border-[#FF5E1E]"
@@ -285,11 +281,11 @@ export const ContactPage: React.FC = () => {
               Frequently Asked Questions
             </h3>
             <p className="text-xs text-[#8A6A54] font-mono-tech">
-              Quick answers regarding power, signal chain, and our 1-year warranty.
+              Quick answers regarding power, signal chain, and our 6-month warranty.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {faqs.map((faq, i) => (
               <div key={i} className="p-6 bg-white border border-[#F0D3B8] rounded-2xl space-y-2 backdrop-blur-xl">
                 <div className="font-bold text-xs sm:text-sm text-[#2A1A12] flex items-center gap-2 font-mono-tech">

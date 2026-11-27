@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Plus, Minus, ArrowRight, ShieldCheck, Truck } from 'lucide-react';
+import { X, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { IdiotPedalsLogo } from './IdiotPedalsLogo';
 
@@ -36,7 +36,7 @@ export const CartDrawer: React.FC = () => {
                 </span>
               </h2>
               <p className="text-xs font-mono-tech text-[#8A6A54] tracking-widest uppercase mt-0.5">
-                Direct From Burdwan Lab
+                Direct From Our Lab
               </p>
             </div>
             <button
@@ -144,20 +144,6 @@ export const CartDrawer: React.FC = () => {
                   </div>
                 </div>
               ))
-            )}
-
-            {/* Value Props */}
-            {items.length > 0 && (
-              <div className="p-4 bg-[#FFF1E6] border border-[#F0D3B8] rounded-2xl text-xs font-mono-tech space-y-2 text-[#8A6A54]">
-                <div className="flex items-center gap-2">
-                  <Truck size={14} className="text-[#FF5E1E]" />
-                  <span>Free insured doorstep delivery across India</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-[#FF5E1E]" />
-                  <span>1-Year comprehensive workshop warranty</span>
-                </div>
-              </div>
             )}
           </div>
 

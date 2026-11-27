@@ -70,7 +70,7 @@ export const HomePage: React.FC = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 relative z-10">
           <div className="flex items-center justify-center gap-3 text-xs font-mono-tech tracking-[0.3em] text-[#FF5E1E] uppercase">
             <span className="w-8 h-px bg-[#FF5E1E]" />
-            <span>BURDWAN WORKBENCH</span>
+            <span>OUR WORKBENCH</span>
             <span className="w-8 h-px bg-[#FF5E1E]" />
           </div>
 
@@ -80,8 +80,8 @@ export const HomePage: React.FC = () => {
 
           <p className="max-w-2xl mx-auto text-[#8A6A54] text-base sm:text-lg font-sans leading-relaxed">
             Every IDIOT pedal is hand-soldered, individually biased, and
-            spectrum-tested in small batches of 25 units. Built to survive tour
-            vans and bedroom jam sessions alike.
+            spectrum-tested in small batches of 25 units. Built to survive jam
+            sessions and stage!
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">

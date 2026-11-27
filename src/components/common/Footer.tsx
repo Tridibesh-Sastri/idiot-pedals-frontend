@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ShieldCheck, Truck, Wrench } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck, Wrench } from 'lucide-react';
 import { IdiotPedalsLogo } from './IdiotPedalsLogo';
 import { useNeonFuzzBox } from '../../hooks/useNeonFuzzBox';
 
@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 relative z-10">
         
         {/* Top Trust Banner */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 p-6 sm:p-8 rounded-3xl bg-[#FFF8F1] border border-[#F0D3B8] shadow-[0_8px_40px_-16px_rgba(255,94,30,0.25)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 sm:p-8 rounded-3xl bg-[#FFF8F1] border border-[#F0D3B8] shadow-[0_8px_40px_-16px_rgba(255,94,30,0.25)]">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#FFF1E8] border border-[#FF5E1E]/30 flex items-center justify-center text-[#FF5E1E] shrink-0">
               <Wrench size={20} />
@@ -31,25 +31,13 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-[#FFF1E8] border border-[#FF5E1E]/30 flex items-center justify-center text-[#FF5E1E] shrink-0">
-              <Truck size={20} />
-            </div>
-            <div>
-              <div className="text-xs font-mono-tech font-bold text-[#2A1A12] uppercase tracking-wider">
-                Free Nationwide Express
-              </div>
-              <div className="text-xs text-[#8A6A54] pt-0.5">Ensured priority dispatch.</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#FFF1E8] border border-[#FF5E1E]/30 flex items-center justify-center text-[#FF5E1E] shrink-0">
               <ShieldCheck size={20} />
             </div>
             <div>
               <div className="text-xs font-mono-tech font-bold text-[#2A1A12] uppercase tracking-wider">
-                1-Year Warranty
+                6-Month Warranty
               </div>
-              <div className="text-xs text-[#8A6A54] pt-0.5">Comprehensive repair & technical player support.</div>
+              <div className="text-xs text-[#8A6A54] pt-0.5">Comprehensive repair &amp; technical player support.</div>
             </div>
           </div>
         </div>
@@ -64,12 +52,12 @@ export const Footer: React.FC = () => {
               CHEAPER. CLASSIC SOUND.
             </div>
             <p className="text-xs sm:text-sm text-[#8A6A54] max-w-sm leading-relaxed font-light">
-              We build high-character analog guitar pedals for real working players. Crafted with through-hole components, rugged aluminum chassis, and genuine passion for pure rock tone.
+              Enjoy the too much of everything.
             </p>
             <div className="text-xs font-mono-tech text-[#8A6A54] space-y-2 pt-2">
               <div className="flex items-center gap-2.5">
                 <MapPin size={15} className="text-[#FF5E1E] shrink-0" />
-                <span>Bardhaman (Burdwan), West Bengal, 713101, India</span>
+                <span>Bardhaman (Burdwan), West Bengal, 713104, India</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail size={15} className="text-[#FF5E1E] shrink-0" />
@@ -102,16 +90,6 @@ export const Footer: React.FC = () => {
                   Return &amp; Refund Policy
                 </Link>
               </li>
-              <li>
-                <Link to="/privacy" className="hover:text-[#FF5E1E] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="hover:text-[#FF5E1E] transition-colors">
-                  Terms &amp; Conditions
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -140,9 +118,6 @@ export const Footer: React.FC = () => {
                 <Link to="/checkout" className="hover:text-[#FF5E1E] transition-colors">
                   Direct Checkout
                 </Link>
-              </li>
-              <li className="pt-2 text-[11px] text-[#8A6A54]/80 leading-normal">
-                Free insured doorstep delivery across India. Tracking details are shared once your order ships.
               </li>
             </ul>
           </div>

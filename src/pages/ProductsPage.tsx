@@ -101,16 +101,15 @@ const ProductCard: React.FC<{ product: Product; priority?: boolean }> = ({ produ
 
       <div className="p-4 sm:p-6 space-y-3.5 sm:space-y-4 flex flex-col flex-1">
         <div className="space-y-1.5 flex-1">
-          <div className="text-[10px] font-mono-tech text-[#8A6A54] uppercase tracking-widest">
-            {product.sku || product.slug}
-          </div>
           <Link to={`/products/${product.id}`}>
             <h3 className="text-lg font-editorial font-bold text-[#2A1A12] leading-tight hover:text-[#FF5E1E] transition-colors">
               {product.name}
             </h3>
           </Link>
           <p className="text-xs text-[#8A6A54] font-light leading-relaxed line-clamp-3">
-            {product.description}
+            {product.description.replace(/\bfuzz\b/gi, (match) =>
+              match[0] === 'F' ? 'Distortion' : 'distortion'
+            )}
           </p>
         </div>
 

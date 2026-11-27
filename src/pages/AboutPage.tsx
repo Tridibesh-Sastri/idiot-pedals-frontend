@@ -35,15 +35,15 @@ export const AboutPage: React.FC = () => {
           <h2 className="text-2xl sm:text-4xl font-editorial font-normal text-[#2A1A12]">
             Why "IDIOT"?
           </h2>
-          <div className="space-y-4 text-xs sm:text-sm text-[#8A6A54] leading-relaxed font-light">
+          <div className="space-y-4 text-sm sm:text-base text-[#5A4234] leading-relaxed font-light">
             <p>
-              When we told veteran boutique pedal builders we were going to build a heavy-duty, die-cast aluminum analog fuzz with through-hole components, alpha pots, and a true-bypass 3PDT switch for under ₹2,500 ($30), they said:
+              As a student, I never quite fit into conventional ways of learning. I struggled with traditional academics, and despite being passionate about many things, I was often labelled an <em className="italic text-[#2A1A12]">idiot</em>.
             </p>
-            <blockquote className="p-5 bg-[#FFF1E6] border-l-4 border-[#FF5E1E] text-[#2A1A12] font-editorial italic text-base sm:text-xl rounded-r-2xl">
-              "You’re idiots. You should price it at ₹12,000, print a fancy mystical name on it, and pretend it uses unobtainable fairy-dust germanium."
-            </blockquote>
             <p>
-              We loved the name so much we put it right on the faceplate. Because the real idiocy is paying half a month’s rent for an overdrive or fuzz that has thirty cents of copper and an op-amp inside.
+              Today, that same idiot has built something of his own — something that musicians believe in, use, and trust.
+            </p>
+            <p>
+              <strong className="font-semibold text-[#2A1A12]">Idiot Pedals</strong> is more than just a name. It&apos;s a reminder that being different doesn&apos;t mean being incapable, and that sometimes the best things come from taking your own path.
             </p>
           </div>
         </div>
@@ -64,9 +64,9 @@ export const AboutPage: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FF7A00] to-[#FF4500] border border-[#FF5E1E]/30 flex items-center justify-center text-white shadow-lg shadow-[#FF5E1E]/30">
               <Wrench size={20} />
             </div>
-            <h3 className="text-xl font-editorial font-bold text-[#2A1A12]">Handcrafted In Burdwan</h3>
+            <h3 className="text-xl font-editorial font-bold text-[#2A1A12]">Hand-Assembled &amp; Tested</h3>
             <p className="text-xs text-[#8A6A54] leading-relaxed font-light">
-              Each pedal is hand-assembled, individually biased, and tested with real guitars into real tube amplifiers in our workshop before getting boxed with an inspector stamp.
+              Each batch is hand assembled and tested multiple times to check for any fault and then shipped to our customer.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export const AboutPage: React.FC = () => {
             to="/checkout"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#FF7A00] to-[#FF4500] hover:from-[#FF8A00] hover:to-[#FF5500] text-white text-xs font-mono-tech font-bold uppercase rounded-full shadow-xl shadow-[#FF5E1E]/30 transition-all glow-neon-orange"
           >
-            <span>Check Out The Neon Fuzz Box</span>
+            <span>Check Out The Distortion ONE</span>
             <ArrowRight size={14} />
           </Link>
           <div className="text-xs text-[#8A6A54] font-mono-tech tracking-widest uppercase">
