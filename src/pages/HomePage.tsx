@@ -103,6 +103,35 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ================= FLOATING WHATSAPP WIDGET ================= */}
+      <a
+        href={`https://wa.me/917908585003?text=${encodeURIComponent('Hey, I have a query about IDIOT Pedals.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with IDIOT Pedals on WhatsApp"
+        className="fixed bottom-24 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-2 sm:gap-2.5"
+      >
+        {/* Animated message bubble */}
+        <div className="bg-white border border-[#F0D3B8] text-[#2A1A12] px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full shadow-lg shadow-[#FF5E1E]/15 flex items-center gap-1.5 sm:gap-2 animate-bounce [animation-duration:3s]">
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FF5E1E] animate-pulse shrink-0" />
+          <span className="text-[10px] sm:text-xs font-mono-tech font-bold tracking-wide whitespace-nowrap">
+            Got a query? Chat with us
+          </span>
+        </div>
+
+        {/* Orange & white WhatsApp icon button */}
+        <div className="relative w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#FF7A00] to-[#FF4500] group-hover:from-[#FF8A00] group-hover:to-[#FF5500] text-white flex items-center justify-center shadow-xl shadow-[#FF5E1E]/35 glow-neon-orange transition-transform group-hover:scale-105 shrink-0">
+          <span className="absolute inset-0 rounded-full bg-[#FF5E1E]/40 animate-ping [animation-duration:2.5s] pointer-events-none" />
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="w-6 h-6 sm:w-7 sm:h-7 fill-current relative z-10"
+          >
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.79 14.08c-.24.68-1.41 1.3-1.95 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.12 1.01-2.41c.26-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.31.38-.44.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.39-.24.65-.14.26.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.7-.17 1.38z" />
+          </svg>
+        </div>
+      </a>
     </div>
   );
 };

@@ -57,7 +57,7 @@ export const CartDrawer: React.FC = () => {
                 </div>
                 <h3 className="text-lg font-editorial font-bold text-[#2A1A12]">Your cart is empty</h3>
                 <p className="text-xs text-[#8A6A54] max-w-xs mx-auto leading-relaxed">
-                  Add the Neon Fuzz Box to your workbench and hear true analog harmonic character.
+                  Add the Distortion ONE to your workbench and hear true analog harmonic character.
                 </p>
                 <button
                   onClick={() => {
@@ -66,7 +66,7 @@ export const CartDrawer: React.FC = () => {
                   }}
                   className="px-6 py-3 bg-gradient-to-r from-[#FF7A00] to-[#FF4500] text-white text-xs font-mono-tech font-bold tracking-[0.2em] uppercase rounded-full shadow-lg shadow-[#FF5E1E]/25 transition-all glow-neon-subtle cursor-pointer"
                 >
-                  Buy Neon Fuzz Box
+                  Buy Distortion ONE
                 </button>
               </div>
             ) : (
