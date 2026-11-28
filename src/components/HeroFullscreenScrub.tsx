@@ -53,7 +53,6 @@ export function HeroFullscreenScrub({ onTransitionStateChange: _ }: HeroFullscre
         <div className="max-w-7xl mx-auto w-full flex justify-start">
           <div className="w-[48%] xl:w-[44%] space-y-6 lg:space-y-7">
             <div className="inline-flex items-center gap-2 text-xs font-mono-tech tracking-widest uppercase text-[#FF5E1E] font-bold">
-              <span className="w-2 h-2 rounded-full bg-[#FF5E1E]" />
               <span>Distortion Pedal Electric Guitar</span>
             </div>
 
@@ -110,7 +109,6 @@ export function HeroFullscreenScrub({ onTransitionStateChange: _ }: HeroFullscre
         {/* TOP: Headline below the navbar */}
         <div className="shrink-0 space-y-1">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FF5E1E]/10 border border-[#FF5E1E]/20 mb-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E1E]" />
             <span className="text-[10px] font-mono-tech font-bold tracking-[0.2em] uppercase text-[#FF5E1E]">
               Distortion Pedal Electric Guitar
             </span>
@@ -202,8 +200,7 @@ export function HeroFullscreenScrub({ onTransitionStateChange: _ }: HeroFullscre
         aria-label="Chat with IDIOT Pedals on WhatsApp"
         className="absolute bottom-24 right-4 sm:bottom-6 sm:right-6 z-30 group flex items-center gap-2 sm:gap-2.5"
       >
-        <div className="bg-white border border-[#F0D3B8] text-[#2A1A12] px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full shadow-lg shadow-[#FF5E1E]/15 flex items-center gap-1.5 sm:gap-2 animate-bounce [animation-duration:3s]">
-          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FF5E1E] animate-pulse shrink-0" />
+        <div className="bg-white border border-[#F0D3B8] text-[#2A1A12] px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full shadow-lg shadow-[#FF5E1E]/15 flex items-center animate-bounce [animation-duration:3s]">
           <span className="text-[10px] sm:text-xs font-mono-tech font-bold tracking-wide whitespace-nowrap">
             Got a query? Chat with us
           </span>

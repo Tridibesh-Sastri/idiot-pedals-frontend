@@ -25,6 +25,19 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         wheelMultiplier: 1.0,
       });
 
+      const syncLenisLock = () => {
+        const locked =
+          document.body.style.overflow === 'hidden' ||
+          document.documentElement.style.overflow === 'hidden';
+        if (locked) lenis.stop();
+        else lenis.start();
+      };
+      syncLenisLock();
+
+      const observer = new MutationObserver(syncLenisLock);
+      observer.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
+
       const raf = (time: number) => {
         if (cancelled) return;
         lenis.raf(time);
@@ -32,7 +45,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       };
 
       rafId = window.requestAnimationFrame(raf);
-      destroyLenis = () => lenis.destroy();
+      destroyLenis = () => {
+        observer.disconnect();
+        lenis.destroy();
+      };
     });
 
     return () => {

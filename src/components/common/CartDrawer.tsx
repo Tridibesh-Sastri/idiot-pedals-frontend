@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
@@ -8,6 +8,47 @@ export const CartDrawer: React.FC = () => {
   const { isCartOpen, setIsCartOpen, items, updateQuantity, removeItem, subtotal, total } = useCart();
   const navigate = useNavigate();
 
+  // Lock background page scroll (desktop, mobile, and Lenis) and close on Escape while cart is open
+  useEffect(() => {
+    if (!isCartOpen) return;
+
+    const scrollY = window.scrollY;
+    const prevBodyStyle = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      right: document.body.style.right,
+      width: document.body.style.width,
+    };
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsCartOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyStyle.overflow;
+      document.body.style.position = prevBodyStyle.position;
+      document.body.style.top = prevBodyStyle.top;
+      document.body.style.left = prevBodyStyle.left;
+      document.body.style.right = prevBodyStyle.right;
+      document.body.style.width = prevBodyStyle.width;
+      window.scrollTo(0, scrollY);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isCartOpen, setIsCartOpen]);
+
   if (!isCartOpen) return null;
 
   const handleCheckout = () => {
@@ -16,7 +57,10 @@ export const CartDrawer: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-[70] overflow-hidden">
+    <div
+      data-lenis-prevent
+      className="fixed inset-0 z-[70] overflow-hidden overscroll-contain"
+    >
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300"
@@ -49,7 +93,7 @@ export const CartDrawer: React.FC = () => {
           </div>
 
           {/* Cart Contents */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
+          <div className="flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 space-y-4 sm:space-y-6">
             {items.length === 0 ? (
               <div className="text-center py-20 space-y-5">
                 <div className="w-fit min-w-[4.5rem] h-16 px-3 mx-auto rounded-2xl bg-[#FFF1E6] border border-[#F0D3B8] flex items-center justify-center text-[#8A6A54]">
