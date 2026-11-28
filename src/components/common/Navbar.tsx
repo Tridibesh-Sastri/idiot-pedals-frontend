@@ -69,6 +69,13 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
     return location.pathname === path;
   };
 
+  const handleHomeClick = () => {
+    setIsMobileMenuOpen(false);
+    if (location.pathname === '/' && !location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <header
@@ -83,6 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
           {/* Brand Logo */}
           <Link
             to="/"
+            onClick={handleHomeClick}
             className="flex items-center gap-2 group focus:outline-none shrink-0"
             aria-label="IDIOT Pedals Home"
           >
@@ -97,6 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
                 <Link
                   key={link.name}
                   to={link.path}
+                  onClick={link.path === '/' ? handleHomeClick : undefined}
                   className={`px-2.5 xl:px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
                     isActive
                       ? 'bg-[#FF5E1E]/15 text-[#FF5E1E] font-bold ring-1 ring-[#FF5E1E]/40'
@@ -192,7 +201,10 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
                   key={link.name}
                   to={link.path}
                   tabIndex={isMobileMenuOpen ? 0 : -1}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    if (link.path === '/') handleHomeClick();
+                    else setIsMobileMenuOpen(false);
+                  }}
                   className={`text-base font-mono-tech tracking-[0.18em] uppercase transition-colors py-1 ${
                     active
                       ? 'text-[#FF5E1E] font-bold'
