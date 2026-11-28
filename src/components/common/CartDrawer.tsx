@@ -52,7 +52,7 @@ export const CartDrawer: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
             {items.length === 0 ? (
               <div className="text-center py-20 space-y-5">
-                <div className="w-16 h-16 mx-auto rounded-2xl bg-[#FFF1E6] border border-[#F0D3B8] flex items-center justify-center text-[#8A6A54]">
+                <div className="w-fit min-w-[4.5rem] h-16 px-3 mx-auto rounded-2xl bg-[#FFF1E6] border border-[#F0D3B8] flex items-center justify-center text-[#8A6A54]">
                   <IdiotPedalsLogo variant="light" size="sm" />
                 </div>
                 <h3 className="text-lg font-editorial font-bold text-[#2A1A12]">Your cart is empty</h3>

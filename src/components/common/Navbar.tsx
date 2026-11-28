@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
             className="flex items-center gap-2 group focus:outline-none shrink-0"
             aria-label="IDIOT Pedals Home"
           >
-            <IdiotPedalsLogo variant="dark" size="sm" />
+            <IdiotPedalsLogo variant="dark" size="sm" layout="inline" />
           </Link>
 
           {/* Desktop Nav Links — balanced editorial row with active orange pill */}
