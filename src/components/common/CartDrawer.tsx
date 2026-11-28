@@ -49,8 +49,6 @@ export const CartDrawer: React.FC = () => {
     };
   }, [isCartOpen, setIsCartOpen]);
 
-  if (!isCartOpen) return null;
-
   const handleCheckout = () => {
     setIsCartOpen(false);
     navigate('/checkout');
@@ -59,16 +57,23 @@ export const CartDrawer: React.FC = () => {
   return (
     <div
       data-lenis-prevent
-      className="fixed inset-0 z-[70] overflow-hidden overscroll-contain"
+      aria-hidden={!isCartOpen}
+      className={`fixed inset-0 z-[70] overflow-hidden overscroll-contain transition-[opacity] duration-300 ease-out motion-reduce:transition-none ${
+        isCartOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
         onClick={() => setIsCartOpen(false)}
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
-        <div className="w-screen max-w-full sm:max-w-md bg-[#FFF8F1] border-l border-[#F0D3B8] flex flex-col shadow-2xl text-[#2A1A12]">
+        <div
+          className={`w-screen max-w-full sm:max-w-md bg-[#FFF8F1] border-l border-[#F0D3B8] flex flex-col shadow-2xl text-[#2A1A12] transition-[translate] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+            isCartOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
 
           {/* Header */}
           <div className="p-4 sm:p-6 border-b border-[#F0D3B8] flex items-center justify-between bg-white">
