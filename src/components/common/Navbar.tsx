@@ -170,82 +170,89 @@ export const Navbar: React.FC<NavbarProps> = ({ forceVisible = false, isScrubCom
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-[#0B0E14] lg:hidden h-[100dvh] overflow-y-auto overscroll-contain flex flex-col justify-between"
-          style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
-        >
-          <div className="min-h-full flex flex-col justify-between pt-28 px-8 pb-10 w-full relative z-10">
-            
-            {/* Navigation Links */}
-            <nav className="flex flex-col gap-4 pt-2">
-              {navLinks.map((link) => {
-                const active = isLinkActive(link.path);
+      {/* Mobile Drawer Navigation Menu — GPU-composited right-to-left slide (Tailwind v4 uses `translate` property) */}
+      <div
+        aria-hidden={!isMobileMenuOpen}
+        className={`fixed inset-0 z-40 bg-[#0B0E14] lg:hidden h-[100dvh] overflow-y-auto overscroll-contain flex flex-col justify-between transition-[translate,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+          isMobileMenuOpen
+            ? 'translate-x-0 opacity-100 pointer-events-auto'
+            : 'translate-x-full opacity-0 pointer-events-none'
+        }`}
+        style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
+      >
+        <div className="min-h-full flex flex-col justify-between pt-28 px-8 pb-10 w-full relative z-10">
+          
+          {/* Navigation Links */}
+          <nav className="flex flex-col gap-4 pt-2">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.path);
 
-                return (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-base font-mono-tech tracking-[0.18em] uppercase transition-colors py-1 ${
-                      active
-                        ? 'text-[#FF5E1E] font-bold'
-                        : 'text-[#8E98A8] hover:text-[#F6F4EE]'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-
-              <div className="h-px bg-white/10 my-1" />
-
-              {/* Prominent, clean Sign In / Profile action */}
-              <Link
-                to={isAuthenticated ? '/account' : '/login'}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 rounded-full border border-white/15 bg-white/[0.04] active:bg-white/10 text-xs font-mono-tech tracking-[0.18em] uppercase text-[#F6F4EE] transition-colors"
-              >
-                <div className="flex items-center gap-2.5">
-                  <UserIcon size={14} className={isAuthenticated ? 'text-[#FF5E1E]' : 'text-[#8E98A8]'} />
-                  <span className={isAuthenticated ? 'font-bold' : 'font-normal'}>
-                    {isAuthenticated ? (user?.name || 'Player Profile') : 'Sign In / Register'}
-                  </span>
-                </div>
-                <ArrowRight size={13} className="text-[#8E98A8]" />
-              </Link>
-
-              {isAuthenticated && (
+              return (
                 <Link
-                  to="/orders"
+                  key={link.name}
+                  to={link.path}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-xs font-mono-tech tracking-[0.18em] uppercase text-[#8E98A8] hover:text-[#F6F4EE] px-4 py-1.5 transition-colors"
+                  className={`text-base font-mono-tech tracking-[0.18em] uppercase transition-colors py-1 ${
+                    active
+                      ? 'text-[#FF5E1E] font-bold'
+                      : 'text-[#8E98A8] hover:text-[#F6F4EE]'
+                  }`}
                 >
-                  My Orders & Live Dispatch
+                  {link.name}
                 </Link>
-              )}
-            </nav>
+              );
+            })}
 
-            {/* Bottom Actions */}
-            <div className="pt-6 space-y-4 mt-auto">
-              <Link
-                to="/products"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-4 bg-[#FF5E1E] hover:bg-[#FF4500] active:scale-[0.99] text-white font-mono-tech font-bold tracking-[0.2em] uppercase text-center rounded-full flex items-center justify-center gap-2 text-xs transition-all"
-              >
-                <span>Buy Now</span>
-                <ArrowRight size={14} />
-              </Link>
+            <div className="h-px bg-white/10 my-1" />
 
-              <div className="text-center text-[10px] font-mono-tech text-[#8E98A8] tracking-widest uppercase pt-1">
-                IDIOT PEDALS —— BURDWAN, INDIA
+            {/* Prominent, clean Sign In / Profile action */}
+            <Link
+              to={isAuthenticated ? '/account' : '/login'}
+              tabIndex={isMobileMenuOpen ? 0 : -1}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-4 py-3 rounded-full border border-white/15 bg-white/[0.04] active:bg-white/10 text-xs font-mono-tech tracking-[0.18em] uppercase text-[#F6F4EE] transition-colors"
+            >
+              <div className="flex items-center gap-2.5">
+                <UserIcon size={14} className={isAuthenticated ? 'text-[#FF5E1E]' : 'text-[#8E98A8]'} />
+                <span className={isAuthenticated ? 'font-bold' : 'font-normal'}>
+                  {isAuthenticated ? (user?.name || 'Player Profile') : 'Sign In / Register'}
+                </span>
               </div>
-            </div>
+              <ArrowRight size={13} className="text-[#8E98A8]" />
+            </Link>
 
+            {isAuthenticated && (
+              <Link
+                to="/orders"
+                tabIndex={isMobileMenuOpen ? 0 : -1}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-mono-tech tracking-[0.18em] uppercase text-[#8E98A8] hover:text-[#F6F4EE] px-4 py-1.5 transition-colors"
+              >
+                My Orders & Live Dispatch
+              </Link>
+            )}
+          </nav>
+
+          {/* Bottom Actions */}
+          <div className="pt-6 space-y-4 mt-auto">
+            <Link
+              to="/products"
+              tabIndex={isMobileMenuOpen ? 0 : -1}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full py-4 bg-[#FF5E1E] hover:bg-[#FF4500] active:scale-[0.99] text-white font-mono-tech font-bold tracking-[0.2em] uppercase text-center rounded-full flex items-center justify-center gap-2 text-xs transition-all"
+            >
+              <span>Buy Now</span>
+              <ArrowRight size={14} />
+            </Link>
+
+            <div className="text-center text-[10px] font-mono-tech text-[#8E98A8] tracking-widest uppercase pt-1">
+              IDIOT PEDALS —— BURDWAN, INDIA
+            </div>
           </div>
+
         </div>
-      )}
+      </div>
     </>
   );
 };
